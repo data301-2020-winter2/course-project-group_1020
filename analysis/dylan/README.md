@@ -1,1 +1,1 @@
-Raw data is in /raw, cleaned and processed data is in /processed 
+Draft or work in progress Jupyter Notebooks stored here.
