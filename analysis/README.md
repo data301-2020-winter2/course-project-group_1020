@@ -1,1 +1,1 @@
-Raw data is in /raw, cleaned and processed data is in /processed 
+All jupyter notebook files should be in this parent directory.
