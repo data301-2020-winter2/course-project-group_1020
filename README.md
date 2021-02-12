@@ -9,7 +9,10 @@ Details for Milestone are available on Canvas (left sidebar, Course Project) or 
 
 ## Describe your topic/interest in about 150-200 words
 
-{Add your stuff here}
+The global terrorism database includes attacks around the world from 1970 to 2017, collected by scrubbing numerous news articles as the information is desired from every country.
+Hopefully this dataset can shed some light on how common terrorist attacks are and in what country and show whether there are upwards or downward trends in how violent they are.
+As this data set has number of attributes, over one hundred columns, we will be able to filter the data by a great extent and extract several correlations between different attributes to showcase.
+
 
 ## Describe your dataset in about 150-200 words
 
