@@ -20,7 +20,7 @@ As this data set has number of attributes, over one hundred columns, we will be 
 
 ## Team Members
 
-- Person 1: one sentence about you!
+- Dylan Molloy: An engineering student learning the ropes of programming and data manipulation!
 - Person 2: one sentence about you!
 - Person 3: one sentence about you!
 
