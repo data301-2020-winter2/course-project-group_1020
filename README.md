@@ -9,10 +9,7 @@ Details for Milestone are available on Canvas (left sidebar, Course Project) or 
 
 ## Describe your topic/interest in about 150-200 words
 
-The global terrorism database includes attacks around the world from 1970 to 2017, collected by scrubbing numerous news articles as the information is desired from every country.
-Hopefully this dataset can shed some light on how common terrorist attacks are and in what country and show whether there are upwards or downward trends in how violent they are.
-As this data set has number of attributes, over one hundred columns, we will be able to filter the data by a great extent and extract several correlations between different attributes to showcase.
-
+After 911 terrorism has been on of the defining aspects of the last two decades. Most student now grew up with terrorism cycling the news, whether it the debates about the war in Iraq or the rise of ISIS soon after. Thus it is in our better our better interest to gain more insight into the very nature of terrorism. And answers some important questions, "like what gives rise to terrorism", "how common are terrorist attacks in each country?", "how do countries differ?", and "are there upward trends in the severity and violence to terroorist attacks?". As this data set has number of attributes, over one hundred columns, filtering the data can be done to a great extent and numerous correlations may be extracted to showcase terroism trends.
 
 ## Describe your dataset in about 150-200 words
 
