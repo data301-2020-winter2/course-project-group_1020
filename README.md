@@ -21,7 +21,7 @@ As this data set has number of attributes, over one hundred columns, we will be 
 ## Team Members
 
 - Dylan Molloy: An engineering student learning the ropes of programming and data manipulation!
-- Person 2: one sentence about you!
+- Nicholas Demetrick: Not verry good with writting senteces about him self.
 - Person 3: one sentence about you!
 
 ## References
