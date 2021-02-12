@@ -19,7 +19,7 @@ After 911 terrorism has been on of the defining aspects of the last two decades.
 
 - Dylan Molloy: An engineering student learning the ropes of programming and data manipulation!
 - Nicholas Demetrick: Not verry good with writting senteces about him self.
-- Person 3: one sentence about you!
+- Nikita Korobkin: A computer science student who hates GitHub.
 
 ## References
 
