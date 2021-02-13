@@ -27,7 +27,7 @@ Data Collection: By filtering thousands of news articles with machine learning a
 ## Team Members
 
 - Dylan Molloy: An engineering student learning the ropes of programming and data manipulation!
-- Nicholas Demetrick: Not verry good with writting senteces about him self.
+- Nicholas Demetrick: Not very good with writing sentences about himself (or spelling).
 - Nikita Korobkin: A computer science student who hates GitHub.
 
 ## References
