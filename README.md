@@ -18,7 +18,7 @@ Data Provided By: "NATIONAL CONSORTUIM FOR THE STUDY OF TERRORISM AND RESPONSES 
 
 Data Contains: Around 180,000 rows with up to 150 variables per row. These variables include but not limited to date, location, method of attack, casualties, ext ....
 
-Data Collected: 2017
+Data Collected: 2017, data over the years of 1970 to 2017.
 
 Data Purpose: To better understand the very nature of terrorism. 
 
