@@ -93,7 +93,7 @@ def getData(path):
     "INT_ANY",
     "related",
     ]).rename(columns={
-        "eventid": "id", 
+        "eventid": "id",
         "iyear": "year",
         "imonth": "month",
         "iday" : "day",
@@ -116,15 +116,20 @@ def getData(path):
             df[i] = df[i].replace(nans, np.nan).astype(types)
 
             
-    s1 = "id specificity nperps nkill nkillus nkillter nwound nwoundus nwoundte propextent propvalue ransomamt ransompaid ransompaidus".split(" ")
+    s1 = "specificity nperps nkill nkillus nkillter nwound nwoundus nwoundte propextent propvalue ransomamt ransompaid ransompaidus".split(" ")
     s2 = "success suicide multiple guncertain individual property ishostkid ransom crit".split(" ")
     s3= "month day".split(" ")
     s4= "year".split(" ")
 
     convert_type(s1, ["-99", "-9", "nan", "Nan"], "float64" )
-    convert_type(s2, ["Nan"], "bool" )
-    convert_type(s3, [ "0", "nan", "Nan"], "float64" )
+    convert_type(s3, ["nan", "Nan"], "float64" )
     convert_type(s4, [ "0"], "int32" )
+    
+    
+    #booleans need a special case
+    for i in s2:
+            df[i] = df[i].replace(["Nan"], np.nan).astype("float32").astype("bool")
+
     
     return df
 
@@ -176,5 +181,5 @@ def cont(st):
     
     print("Number of deaths due to terrorism :", sum(to_numeric(df2["nkill"]).dropna()),end = "\n" * 2 )
     
-    
+  
 
