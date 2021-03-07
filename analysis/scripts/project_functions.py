@@ -133,10 +133,27 @@ def getData(path):
     
     return df
 
+def graph_year(df2, cnty):
+    letter_counts = Counter(df2["year"])
+    df3 = pandas.DataFrame.from_dict( letter_counts , orient='index', )
+    df3.plot(kind='bar', width = 0.85, figsize = (16, 8), facecolor='r', edgecolor='k', title = ("Terrorist Attacks 1970 - 2017 in " + cnty), xlabel = "Year", ylabel = "Number Of Attacks")
 
-def cont(st):
+
+def col_with_count( data, col):
     
-    #Filter to our specific country
+    li = list()
+    for i in set( data[ col]):
+        li.append( [ i ,  len( data[data[col] == i]) ] )
+    
+    li = sorted(li, reverse=True ,key=lambda x:x[1])
+    
+    return li
+
+def cont(st, df):
+    
+    df
+    
+    #Filter to our spescific country
     df2 = df[ df["country_txt"] == st]
     
     
