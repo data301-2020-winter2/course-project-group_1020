@@ -3,7 +3,12 @@ import collections
 import matplotlib.pyplot as plt
 from matplotlib.pyplot import figure
 from collections import Counter
+import seaborn as sns
 import numpy as np
+from IPython.display import HTML, display
+import tabulate
+
+
 
 
 def getData(path):
@@ -149,54 +154,50 @@ def col_with_count( data, col):
     
     return li
 
-def cont(st, df):
+
+def cont(country, df):
     
-    df
-    
-    #Filter to our spescific country
-    df2 = df[ df["country_txt"] == st]
-    
-    
-    #Number of terorist attacks 
-    print( "Number of terrorist attacks", len(df2), "From 1970 to 2000",end = "\n" *3 ) 
-    
-    
-    #Pie Chart of the methods
-    #attack = np.array(col_with_count(df2, "attacktype_txt"))
-    #plt.pie(attack[:,1], labels = attack[:,0], radius = 2, rotatelabels = True )
-    #plt.show()
-    
-    #Terrorist orgnisations
-    attacks = col_with_count(df2, "attacktype_txt")
-    
-    #
-    print("Most common attacks", st, end = "\n" * 2)
-    for i in range(0, 5):
-        print( attacks[i][0], " with ", attacks[i][1], "  "  )
-    
-    print(end = "\n" *2)
+    df2 = df[df["country_txt"] == country]
     
     
     
-    #Graph of the attacks over the years
-    graph_year(df2, st)
+    #Most prolific groups
+    print("There where ", len(df2) , " terrorist attackts from 1970 - 2017 in " , country, ". Killing a total number of " , df2["nkill"].sum() ," people.")
+    
+    print("\n\n")
+    
+    try:
+        print("Most prolific groups in ", country  )
+        groups = DataFrame(  {"Number Of Attacks" : df2["attacktype_txt"].value_counts()}  )
+        display(HTML(tabulate.tabulate(groups[0:5], tablefmt='html')))
+        print("\n\n")
+    
+    except:
+        print( "Not enough data for an analysis in this country")
     
     
+    try:
+        print("Most Common Attack types")
+        groups = DataFrame(  {"Number Of Attacks" : df2["gname"].value_counts()}  )
+        display(HTML(tabulate.tabulate(groups[0:5], tablefmt='html')))
     
-    #Terrorist orgnisations
-    groups = col_with_count(df2, "gname")
+    except:
+        print( "Not enough data for an analysis in this country")
     
-    #
-    print("Most active orgnisations", st, end = "\n" * 2)
-    for i in range(0, 5):
-        print( groups[i][0], " with ", groups[i][1], " attacks "  )
+    print("\n\n")
+    try:
+        print("Most Common Target types")
+        groups = DataFrame(  {"Number Of Attacks" : df2["target"].value_counts()}  )
+        display(HTML(tabulate.tabulate(groups[0:5], tablefmt='html')))
+    except:
+        print( "Not enough data for an analysis in this country")
     
-    print(end = "\n" *2)
-    
-    
-    
-    
-    print("Number of deaths due to terrorism :", sum(to_numeric(df2["nkill"]).dropna()),end = "\n" * 2 )
-    
-  
+    #Graph
+    sns.set(rc={'figure.figsize':(21,13)})
+    ax = sns.countplot( x = df2["year"], palette = "YlOrBr"  )
+    ax.set(ylabel = "Number Of Attacks",xlabel='Years',  title = "Number of terrorism attacks over the years in " +  country  )
+    ax.set_xticklabels( ax.get_xticklabels(), rotation=45)
+    None
+
+
 
