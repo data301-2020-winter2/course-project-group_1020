@@ -5,7 +5,7 @@ from matplotlib.pyplot import figure
 from collections import Counter
 import seaborn as sns
 import numpy as np
-from IPython.display import HTML, display
+from IPython.display import HTML, display, Markdown
 import tabulate
 
 
@@ -167,8 +167,8 @@ def cont(country, df):
     print("\n\n")
     
     try:
-        print("Most prolific groups in ", country  )
-        groups = DataFrame(  {"Number Of Attacks" : df2["attacktype_txt"].value_counts()}  )
+        display(Markdown("Most prolific groups in " + country ))
+        groups = DataFrame(  {"Number Of Attacks" : df2["gname"].value_counts()}  )
         display(HTML(tabulate.tabulate(groups[0:5], tablefmt='html')))
         print("\n\n")
     
@@ -177,8 +177,8 @@ def cont(country, df):
     
     
     try:
-        print("Most Common Attack types")
-        groups = DataFrame(  {"Number Of Attacks" : df2["gname"].value_counts()}  )
+        display(Markdown("Most Common Attack types"))
+        groups = DataFrame(  {"Number Of Attacks" : df2["attacktype_txt"].value_counts()}  )
         display(HTML(tabulate.tabulate(groups[0:5], tablefmt='html')))
     
     except:
@@ -186,7 +186,7 @@ def cont(country, df):
     
     print("\n\n")
     try:
-        print("Most Common Target types")
+        display(Markdown("Most Common Target types"))
         groups = DataFrame(  {"Number Of Attacks" : df2["target"].value_counts()}  )
         display(HTML(tabulate.tabulate(groups[0:5], tablefmt='html')))
     except:
