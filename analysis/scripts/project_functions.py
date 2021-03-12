@@ -8,19 +8,16 @@ import numpy as np
 from IPython.display import HTML, display, Markdown
 import tabulate
 
-
-
-
 def getData(path):
     df = read_csv( path , sep=',' , error_bad_lines=False, index_col=False, dtype='unicode', encoding="ISO-8859-1").drop(columns =[
+    "eventid",
     "approxdate",
     "country",
     "vicinity",
     "region",
     "attacktype1",
     "targtype1",
-    "natlty1",
-    "weaptype1",   
+    "natlty1",  
     "extended",
     "resolution",
     "location",
@@ -69,10 +66,11 @@ def getData(path):
     "nhours",
     "ndays",
     "divert",
-    "kidhijcountry",
     "claimmode3",
     "claimmode3_txt",
     "compclaim",
+    "weaptype1",
+    "weapsubtype1",
     "weaptype2",
     "weaptype2_txt",
     "weapsubtype2",
@@ -85,6 +83,7 @@ def getData(path):
     "weaptype4_txt",
     "weapsubtype4",
     "weapsubtype4_txt",
+    "weapdetail",
     "propcomment",
     "nhostkid",
     "nhostkidus",
@@ -98,45 +97,59 @@ def getData(path):
     "INT_ANY",
     "related",
     ]).rename(columns={
-        "eventid": "id",
         "iyear": "year",
         "imonth": "month",
         "iday" : "day",
-        "attacktype1": "attacktype", 
-        "attacktype1_txt": "attacktype_txt",
-        "targettype1": "targettype",
-        "targettype1_txt": "target_txt",
+        "country_txt" : "country",
+        "region_txt" : "region",
+        "attacktype1_txt": "attacktype",
+        "targtype1_txt": "targettype",
+        "corp1" : "corp",
         "target1": "target",
-        "natity1": "natity",
+        "natlty1_txt": "nationality",
+        "kidhijcountry": "kidnaptocountry",
         "guncertain1": "guncertain",
-        "wepontype1": "weapontype",
-        "weapontype1_txt": "weapontype_txt",
+        "weaptype1_txt": "weapontype",
+        "weapsubtype1_txt": "weaponsubtype",
         "crit1" : "crit"
     })
-
-
-
+    
+    # Converting types: converting columns to floats and ints
+    
     def convert_type(li, nans, types ):
         for i in li:
             df[i] = df[i].replace(nans, np.nan).astype(types)
 
             
-    s1 = "specificity nperps nkill nkillus nkillter nwound nwoundus nwoundte propextent propvalue ransomamt ransompaid ransompaidus".split(" ")
-    s2 = "success suicide multiple guncertain individual property ishostkid ransom crit".split(" ")
-    s3= "month day".split(" ")
-    s4= "year".split(" ")
+    floats = "latitude longitude specificity nperps nkill nkillus nkillter nwound nwoundus nwoundte propextent propvalue ransomamt ransompaid ransompaidus".split(" ")
+    booleans = "success suicide multiple guncertain individual property ishostkid ransom crit".split(" ")
+    ints = "year month day".split(" ")
 
-    convert_type(s1, ["-99", "-9", "nan", "Nan"], "float64" )
-    convert_type(s3, ["nan", "Nan"], "float64" )
-    convert_type(s4, [ "0"], "int32" )
-    
+    convert_type(floats, ["-99", "-9", "nan", "Nan"], "float64" )
+    convert_type(ints, [""], "int32" )
     
     #booleans need a special case
-    for i in s2:
-            df[i] = df[i].replace(["Nan"], np.nan).astype("float32").astype("bool")
+    for i in booleans:
+        df[i] = df[i].fillna(value=0)
+        df[i] = df[i].replace(["Nan"], np.nan).astype("float32").astype("bool")
 
+        
+    # Dropping unknowns: replace certain columns containing 'unknown' with NaN, then drop all Na
+    
+    containing_unknown = ["latitude", "longitude", "provstate", "city", "target", "specificity", "nationality"]
+    df[containing_unknown] = df[containing_unknown].replace('Unknown', np.nan)
+    df = df.dropna(subset = containing_unknown)
+    
+    # Dropping zeros: filtering out certain columns with values of zero 
+    
+    df = df[(df['month'] != 0) & (df['day'] != 0)]
+    
+    # Resetting index
+    
+    df = df.reset_index().drop(columns='index')
     
     return df
+
 
 def graph_year(df2, cnty):
     letter_counts = Counter(df2["year"])
@@ -154,10 +167,9 @@ def col_with_count( data, col):
     
     return li
 
-
 def cont(country, df):
     
-    df2 = df[df["country_txt"] == country]
+    df2 = df[df["country"] == country]
     
     
     
@@ -198,6 +210,6 @@ def cont(country, df):
     ax.set(ylabel = "Number Of Attacks",xlabel='Years',  title = "Number of terrorism attacks over the years in " +  country  )
     ax.set_xticklabels( ax.get_xticklabels(), rotation=45)
     None
-
-
+    
+  
 
