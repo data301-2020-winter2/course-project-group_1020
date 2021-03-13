@@ -188,13 +188,13 @@ def cont(country, df):
         print( "Not enough data for an analysis in this country")
     
     
-    try:
-        display(Markdown("Most Common Attack types"))
-        groups = DataFrame(  {"Number Of Attacks" : df2["attacktype_txt"].value_counts()}  )
-        display(HTML(tabulate.tabulate(groups[0:5], tablefmt='html')))
+    #try:
+    display(Markdown("Most Common Attack types"))
+    groups = DataFrame(  {"Number Of Attacks" : df2["attacktype"].value_counts()}  )
+    display(HTML(tabulate.tabulate(groups[0:5], tablefmt='html')))
     
-    except:
-        print( "Not enough data for an analysis in this country")
+    #except:
+        #print( "Not enough data for an analysis in this country")
     
     print("\n\n")
     try:
@@ -205,8 +205,10 @@ def cont(country, df):
         print( "Not enough data for an analysis in this country")
     
     #Graph
-    sns.set(rc={'figure.figsize':(21,13)})
-    ax = sns.countplot( x = df2["year"], palette = "YlOrBr"  )
+    
+    sns.set_context("notebook", rc={"font.size":13,"axes.titlesize": 21 ,"axes.labelsize": 21})   
+    sns.set(rc={'figure.figsize':(13,8)})
+    ax = sns.countplot( x = df2["year"], palette = "rocket"  )
     ax.set(ylabel = "Number Of Attacks",xlabel='Years',  title = "Number of terrorism attacks over the years in " +  country  )
     ax.set_xticklabels( ax.get_xticklabels(), rotation=45)
     None
