@@ -1,1 +1,1 @@
-Draft or work in progress Jupyter Notebooks stored here.
+dylan_eda jupyter notebook contains the individual exploratory data analysis for milestone 2

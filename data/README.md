@@ -17,7 +17,7 @@ df = getData(".../terrorism.csv")
 
 ## Dont Do
 
-Do not have the uncopressed data in your git repository. This is because when you commit the data you will exceed the file size limmit and git wont push. The only way i found a way to fix this is to delete the repository and clone it again.
+Do not have the uncompressed data in your git repository. This is because when you commit the data you will exceed the file size limmit and git wont push. The only way i found a way to fix this is to delete the repository and clone it again.
 
 
 
