@@ -1,6 +1,6 @@
 All jupyter notebook files should be in this parent directory.
 
-# Jupyter Nptebooks and Scripts
+# Jupyter Notebooks and Scripts
 Group 1020
 
 The folders of dylan, nick, and nikita contain the exploratory data analysis of milestone 2.
