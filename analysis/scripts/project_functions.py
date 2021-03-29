@@ -7,9 +7,21 @@ import seaborn as sns
 import numpy as np
 from IPython.display import HTML, display, Markdown
 import tabulate
+from pathlib import Path
 
-def getData(path):
-    df = read_csv( path , sep=',' , error_bad_lines=False, index_col=False, dtype='unicode', encoding="ISO-8859-1").drop(columns =[
+from zipfile import *
+
+from os import listdir
+
+
+
+def getData():
+    
+    
+     
+    data_path = Path( r"../../data/raw/terrorism.zip" )
+    
+    df = read_csv( ZipFile(data_path).open('terrorism.csv') , sep=',' , error_bad_lines=False, index_col=False, dtype='unicode', encoding="ISO-8859-1").drop(columns =[
     "eventid",
     "approxdate",
     "country",
