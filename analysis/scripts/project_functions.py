@@ -12,6 +12,11 @@ from pathlib import Path
 import zipfile
 
 
+def saveData(df):
+    clean_path = Path( r"../../data/processed/terrorism_clean.csv" ) 
+    df.to_csv(clean_path)
+
+
 def getData():
     
     
@@ -106,6 +111,8 @@ def getData():
     "INT_IDEO",
     "INT_MISC",
     "INT_ANY",
+    "summary",
+    "motive",
     "related",
     ]).rename(columns={
         "iyear": "year",
@@ -158,6 +165,8 @@ def getData():
     # Resetting index
     
     df = df.reset_index().drop(columns='index')
+    
+    
     
     return df
 
