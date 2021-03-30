@@ -9,10 +9,7 @@ from IPython.display import HTML, display, Markdown
 import tabulate
 from pathlib import Path
 
-from zipfile import *
-
-from os import listdir
-
+import zipfile
 
 
 def getData():
@@ -20,8 +17,10 @@ def getData():
     
      
     data_path = Path( r"../../data/raw/terrorism.zip" )
+    terrorsimzip =  zipfile.ZipFile(data_path)
+    terrorismcsv = terrorsimzip.open('terrorism.csv')
     
-    df = read_csv( ZipFile(data_path).open('terrorism.csv') , sep=',' , error_bad_lines=False, index_col=False, dtype='unicode', encoding="ISO-8859-1").drop(columns =[
+    df = read_csv( terrorismcsv , sep=',' , error_bad_lines=False, index_col=False, dtype='unicode', encoding="ISO-8859-1").drop(columns =[
     "eventid",
     "approxdate",
     "country",
