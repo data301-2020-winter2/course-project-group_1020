@@ -5,11 +5,23 @@ from matplotlib.pyplot import figure
 from collections import Counter
 import seaborn as sns
 import numpy as np
-from IPython.display import HTML, display
+from IPython.display import HTML, display, Markdown
 import tabulate
+from pathlib import Path
 
-def getData(path):
-    df = read_csv( path , sep=',' , error_bad_lines=False, index_col=False, dtype='unicode', encoding="ISO-8859-1").drop(columns =[
+from zipfile import *
+
+from os import listdir
+
+
+
+def getData():
+    
+    
+     
+    data_path = Path( r"../../data/raw/terrorism.zip" )
+    
+    df = read_csv( ZipFile(data_path).open('terrorism.csv') , sep=',' , error_bad_lines=False, index_col=False, dtype='unicode', encoding="ISO-8859-1").drop(columns =[
     "eventid",
     "approxdate",
     "country",
@@ -179,8 +191,8 @@ def cont(country, df):
     print("\n\n")
     
     try:
-        print("Most prolific groups in ", country  )
-        groups = DataFrame(  {"Number Of Attacks" : df2["attacktype_txt"].value_counts()}  )
+        display(Markdown("Most prolific groups in " + country ))
+        groups = DataFrame(  {"Number Of Attacks" : df2["gname"].value_counts()}  )
         display(HTML(tabulate.tabulate(groups[0:5], tablefmt='html')))
         print("\n\n")
     
@@ -188,25 +200,27 @@ def cont(country, df):
         print( "Not enough data for an analysis in this country")
     
     
-    try:
-        print("Most Common Attack types")
-        groups = DataFrame(  {"Number Of Attacks" : df2["gname"].value_counts()}  )
-        display(HTML(tabulate.tabulate(groups[0:5], tablefmt='html')))
+    #try:
+    display(Markdown("Most Common Attack types"))
+    groups = DataFrame(  {"Number Of Attacks" : df2["attacktype"].value_counts()}  )
+    display(HTML(tabulate.tabulate(groups[0:5], tablefmt='html')))
     
-    except:
-        print( "Not enough data for an analysis in this country")
+    #except:
+        #print( "Not enough data for an analysis in this country")
     
     print("\n\n")
     try:
-        print("Most Common Target types")
+        display(Markdown("Most Common Target types"))
         groups = DataFrame(  {"Number Of Attacks" : df2["target"].value_counts()}  )
         display(HTML(tabulate.tabulate(groups[0:5], tablefmt='html')))
     except:
         print( "Not enough data for an analysis in this country")
     
     #Graph
-    sns.set(rc={'figure.figsize':(21,13)})
-    ax = sns.countplot( x = df2["year"], palette = "YlOrBr"  )
+    
+    sns.set_context("notebook", rc={"font.size":13,"axes.titlesize": 21 ,"axes.labelsize": 21})   
+    sns.set(rc={'figure.figsize':(13,8)})
+    ax = sns.countplot( x = df2["year"], palette = "rocket"  )
     ax.set(ylabel = "Number Of Attacks",xlabel='Years',  title = "Number of terrorism attacks over the years in " +  country  )
     ax.set_xticklabels( ax.get_xticklabels(), rotation=45)
     None
