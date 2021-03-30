@@ -43,6 +43,7 @@ def getData():
     "attacktype2_txt",
     "attacktype3",
     "attacktype3_txt",
+    "crit1",
     "crit2",
     "crit3",
     "doubtterr",
@@ -113,7 +114,12 @@ def getData():
     "INT_ANY",
     "summary",
     "motive",
+    "propextent_txt",
     "related",
+    "specificity",
+    "multiple",
+    "ransomamtus",
+    "hostkidoutcome_txt"
     ]).rename(columns={
         "iyear": "year",
         "imonth": "month",
@@ -128,8 +134,7 @@ def getData():
         "kidhijcountry": "kidnaptocountry",
         "guncertain1": "guncertain",
         "weaptype1_txt": "weapontype",
-        "weapsubtype1_txt": "weaponsubtype",
-        "crit1" : "crit"
+        "weapsubtype1_txt": "weaponsubtype"
     })
     
     # Converting types: converting columns to floats and ints
@@ -139,8 +144,8 @@ def getData():
             df[i] = df[i].replace(nans, np.nan).astype(types)
 
             
-    floats = "latitude longitude specificity nperps nkill nkillus nkillter nwound nwoundus nwoundte propextent propvalue ransomamt ransompaid ransompaidus".split(" ")
-    booleans = "success suicide multiple guncertain individual property ishostkid ransom crit".split(" ")
+    floats = "latitude longitude nperps nkill nkillus nkillter nwound nwoundus nwoundte propextent propvalue ransomamt ransompaid ransompaidus".split(" ")
+    booleans = "success suicide guncertain individual property ishostkid ransom".split(" ")
     ints = "year month day".split(" ")
 
     convert_type(floats, ["-99", "-9", "nan", "Nan"], "float64" )
@@ -154,7 +159,7 @@ def getData():
         
     # Dropping unknowns: replace certain columns containing 'unknown' with NaN, then drop all Na
     
-    containing_unknown = ["latitude", "longitude", "provstate", "city", "target", "specificity", "nationality"]
+    containing_unknown = ["latitude", "longitude", "provstate", "city", "target", "nationality"]
     df[containing_unknown] = df[containing_unknown].replace('Unknown', np.nan)
     df = df.dropna(subset = containing_unknown)
     
