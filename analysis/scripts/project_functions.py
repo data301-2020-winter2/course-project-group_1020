@@ -135,7 +135,10 @@ def getData():
         "guncertain1": "guncertain",
         "weaptype1_txt": "weapontype",
         "weapsubtype1_txt": "weaponsubtype"
-    })
+    }).assign(record = "international"
+    )
+    
+    df.loc[df['country'] == df['nationality'], "record"] = "domestic"
     
     # Converting types: converting columns to floats and ints
     

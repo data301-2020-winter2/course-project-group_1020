@@ -28,6 +28,12 @@ Data Collection: By filtering thousands of news articles with machine learning a
 - Nicholas Demetrick: Not very good with writing sentences about himself (or spelling).
 - Nikita Korobkin: A computer science student who hates GitHub.
 
+## Individual Tableau Online Links  
+[Dylan Molloy](https://us-west-2b.online.tableau.com/#/site/data301/views/Lab7_Group1020_Dylan_51999167/EDADashboard)  
+[Nicholas Demetrick]()  
+[Nikita Korobkin]()  
+Tableau Desktop books are located under analysis then the specific person's folder.
+
 ## References
 
 https://www.start.umd.edu/
