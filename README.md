@@ -31,7 +31,7 @@ Data Collection: By filtering thousands of news articles with machine learning a
 ## Individual Tableau Online Links  
 [Dylan Molloy](https://us-west-2b.online.tableau.com/#/site/data301/views/Lab7_Group1020_Dylan_51999167/EDADashboard)  
 [Nicholas Demetrick](https://us-west-2b.online.tableau.com/#/site/data301/views/TerrorismMapDashboard/Dashboard1)  
-[Nikita Korobkin]()  
+[Nikita Korobkin](https://us-west-2b.online.tableau.com/#/site/data301/views/Lab7_Korobkin_13290333_1020/Dashboard1)  
 Tableau Desktop books are located under analysis then the specific person's folder.
 
 ## References
