@@ -35,6 +35,9 @@ Data Collection: By filtering thousands of news articles with machine learning a
 The dashboards are best viewed together and in order of Dylan, Nicholas, then Nikita. The books unfortunately could not be combined.  
 Tableau Desktop books are located under analysis then the specific person's folder.
 
+## Group Presentation - Milestone 4
+[Youtube Link](https://www.youtube.com/watch?v=LduXF3FsFw8)
+
 ## References
 
 https://www.start.umd.edu/
